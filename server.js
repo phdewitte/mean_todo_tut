@@ -5,7 +5,9 @@ const morgan          = require('morgan');
 const bodyParser      = require('body-parser');
 const methodOverride  = require('method-override');
 
-mongoose.connect('mongodb://mlab.com/databases/mean_todo')
+const db = require('./config/db')
+
+mongoose.connect(db.url)
 
 app.use(express.static(__dirname + '/public'));
 app.use(morgan('dev'));
