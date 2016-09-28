@@ -39,3 +39,7 @@ app.delete('/api/todos', function(request, response) {
     });
   });
 });
+
+app.get('*', function(request, response) {
+  response.sendfile('./public/index.html');
+})
