@@ -1,3 +1,3 @@
 module.exports = {
-  url: 'mongodb://mlab.com/databases/mean_todo'
+  url: 'mongodb://mean_guy:meanguy@ds041516.mlab.com:41516/mean_todo'
 }
