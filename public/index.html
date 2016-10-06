@@ -7,15 +7,18 @@
   <title>Mean Todo App</title>
 
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
   <style>
     html { overflow-y:scroll; }
     body { padding-top:50px; }
     #todo-list { margin-bottom:30px; }
   </style>
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-  <script src="core.js"></script>
+
+  <script src="js/controllers/main.js"></script>
+  <script src="js/services/todos.js"></script>
+  <script src="js/core.js"></script>
 </head>
 
 <body ng-controller="mainController">
@@ -28,7 +31,7 @@
       <div class="col-sm-4 col-sm-offset-4">
         <div class="checkbox" ng-repeat="todo in todos">
           <label>
-            <input type="checkbox" ng-click="deleteTodo(todo.id)"> {{ todo.text }}
+            <input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
           </label>
         </div>
       </div>
