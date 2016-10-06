@@ -1,13 +1,18 @@
-let Todo = require('./models/todo')
+let Todo = require('./models/todo');
 
-// module.exports = function(app) {
+// refactor for es6
+function getTodos(response) {
+  Todo.find(function(err, todos) {
+    if (err)
+      response.send(err)
+
+    response.json(todos);
+  });
+};
+
+module.exports = function(app) {
   app.get('/api/todos', function(request, response) {
-    Todo.find(function(err, todos) {
-      if (err)
-        response.send(err)
-
-      response.json(todos);
-    });
+    getTodos();
   });
 
   app.post('/api/todos', function(request, response) {
@@ -18,11 +23,7 @@ let Todo = require('./models/todo')
       if (err)
         response.send(err);
 
-      Todo.find(function(err, todos) {
-        if (err)
-          response.send(err)
-        repsonse.json(todos);
-      });
+      getTodos();
     });
   });
 
@@ -33,15 +34,11 @@ let Todo = require('./models/todo')
       if (err)
         response.send(err)
 
-      Todo.find(function(err, todos) {
-        if (err)
-          response.send(err)
-        response.json(todos);
-      });
+      getTodos();
     });
   });
-// }
 
-app.get('*', function(request, response) {
-  response.sendfile('./public/index.html');
-})
+  app.get('*', function(request, response) {
+    response.sendFile(__dirname + '/public/index.html');
+  });
+};
