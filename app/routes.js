@@ -12,7 +12,7 @@ function getTodos(response) {
 
 module.exports = function(app) {
   app.get('/api/todos', function(request, response) {
-    getTodos();
+    getTodos(response);
   });
 
   app.post('/api/todos', function(request, response) {
@@ -23,18 +23,18 @@ module.exports = function(app) {
       if (err)
         response.send(err);
 
-      getTodos();
+      getTodos(response);
     });
   });
 
-  app.delete('/api/todos', function(request, response) {
+  app.delete('/api/todos/:todo_id', function(request, response) {
     Todo.remove({
       _id : request.params.todo_id
     }, function(err, todo) {
       if (err)
         response.send(err)
 
-      getTodos();
+      getTodos(response);
     });
   });
 
