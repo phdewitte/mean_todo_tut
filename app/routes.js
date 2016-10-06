@@ -1,7 +1,6 @@
 let Todo = require('./models/todo');
 
-// refactor for es6
-function getTodos(response) {
+getTodos = (response) => {
   Todo.find(function(err, todos) {
     if (err)
       response.send(err)
