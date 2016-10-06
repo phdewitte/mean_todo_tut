@@ -1,5 +1,8 @@
 const mongoose = require('mongoose')
 
-let Todo = mongoose.model('Todo', {
-  text : String
+module.exports = mongoose.model('Todo', {
+  text: {
+    type: String,
+    default: ''
+  }
 });

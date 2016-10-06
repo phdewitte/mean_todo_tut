@@ -1,20 +1,22 @@
 const express         = require('express');
 const app             = express();
 const mongoose        = require('mongoose');
+const port            = process.env.PORT || 8080;
+const db              = require('./config/db')
 const morgan          = require('morgan');
 const bodyParser      = require('body-parser');
 const methodOverride  = require('method-override');
 
-const db = require('./config/db')
-
 mongoose.connect(db.url)
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static('./public'));
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({'extended':'true'}));
 app.use(bodyParser.json());
 app.use(bodyParser.json({ type: 'application/vnd.api+json'}));
-app.use(methodOverride());
+app.use(methodOverride('X-HTTP-Method_Override'));
 
-app.listen(8080);
+require('./app/routes.js')(app);
+
+app.listen(port);
 console.log("App listening on port 8080");
